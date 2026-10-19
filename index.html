@@ -1,0 +1,1421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Housewarming Invitation | A New Beginning Awaits</title>
+  <meta name="description" content="You are cordially invited to celebrate our Housewarming Ceremony. Join us in blessing our new home.">
+
+  <!-- Google Fonts: Cormorant Garamond for serif titles, Amiri for Arabic calligraphy, Plus Jakarta Sans for body, DM Serif Display for house name -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Serif+Display:ital@0;1&family=GFS+Didot&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.cdnfonts.com/css/billabong" rel="stylesheet">
+  <link href="https://fonts.cdnfonts.com/css/didot" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       Housewarming Invitation Stylesheet (Single-File Architecture)
+       Palette:
+       - Warm Ivory:  #FFF9F3
+       - Sage Green:  #87977A
+       - Terracotta:  #B96F55
+       - Dark Brown:  #2D2925
+       ========================================================================== */
+
+    @font-face {
+      font-family: 'Billabong';
+      font-style: normal;
+      font-weight: 400;
+      src: local('Billabong'), url('https://fonts.cdnfonts.com/s/13949/Billabong.woff') format('woff');
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: 'Didot';
+      font-style: normal;
+      font-weight: 400;
+      src: local('Didot'), local('Didot LT STD'), url('https://fonts.cdnfonts.com/s/14050/Didot.woff') format('woff');
+      font-display: swap;
+    }
+
+    :root {
+      --color-ivory: #FFF9F3;
+      --color-ivory-warm: #FAF2E8;
+      --color-sage: #87977A;
+      --color-sage-light: #9DAE90;
+      --color-sage-tint: #EEF2EB;
+      --color-terracotta: #B96F55;
+      --color-terracotta-dark: #9E563E;
+      --color-terracotta-light: #CF846B;
+      --color-terracotta-tint: #F8EEEA;
+      --color-dark-brown: #2D2925;
+      --color-brown-muted: #5F564F;
+      --color-gold-brass: #C5A059;
+      --color-gold-shine: #E6C57F;
+
+      --font-serif: 'Cormorant Garamond', Garamond, 'Times New Roman', serif;
+      --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      --font-arabic: 'Amiri', 'Traditional Arabic', serif;
+      --font-billabong: 'Billabong', cursive, 'Brush Script MT', 'Cormorant Garamond', serif;
+      --font-didot: 'Didot', 'GFS Didot', 'Bodoni MT', Didot, 'Didot LT STD', serif;
+      --font-dm-serif: 'DM Serif Display', Georgia, serif;
+
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --radius-xl: 28px;
+
+      --transition-smooth: cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    /* Base Reset & Layout */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background-color: var(--color-ivory);
+      color: var(--color-dark-brown);
+      font-family: var(--font-sans);
+      font-size: 15px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Master App Viewport Container */
+    .app-viewport {
+      position: relative;
+      width: 100%;
+      height: 100dvh;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background:
+        radial-gradient(circle at 50% 20%, rgba(255, 249, 243, 1), rgba(250, 242, 232, 0.95) 55%, rgba(243, 233, 220, 0.9) 100%);
+      overflow: hidden;
+    }
+
+    /* ==========================================================================
+       SCREEN 2: MAIN HOUSEWARMING INVITATION (Full-Screen Edge-to-Edge)
+       ========================================================================== */
+
+    .screen-card {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      z-index: 5;
+      background:
+        radial-gradient(circle at 50% 12%, rgba(255, 255, 255, 0.9) 0%, rgba(255, 249, 243, 0.95) 45%, rgba(250, 242, 232, 0.98) 100%);
+    }
+
+    .screen-card::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* Full-Screen Natural Flow Container */
+    .invitation-container {
+      margin: auto;
+      width: 100%;
+      max-width: 580px;
+      /* Generous top padding to create large, comfortable empty space above header */
+      padding: clamp(4.5rem, 10vh, 7.5rem) 1.5rem 4rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 1.25rem;
+    }
+
+    /* Bismillah Block (Shifted significantly further down) */
+    .bismillah-block {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.35rem;
+      margin-top: clamp(1.5rem, 4vh, 3rem);
+      width: 100%;
+    }
+
+    .bismillah-arabic {
+      font-family: var(--font-arabic);
+      font-size: clamp(1.95rem, 5.8vw, 2.45rem);
+      line-height: 1.35;
+      color: var(--color-terracotta);
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .bismillah-translation {
+      font-size: clamp(0.85rem, 2.6vw, 0.98rem);
+      color: var(--color-brown-muted);
+      font-style: italic;
+      letter-spacing: 0.03em;
+      opacity: 0.92;
+    }
+
+    /* Elegant Ornamental Divider */
+    .card-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 65%;
+      max-width: 280px;
+      gap: 0.85rem;
+      opacity: 0.7;
+      margin: 0.35rem 0;
+    }
+
+    .divider-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--color-sage), transparent);
+    }
+
+    .divider-icon {
+      font-size: 0.8rem;
+      color: var(--color-sage);
+    }
+
+    /* Invitation Header */
+    .invitation-header {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .eyebrow-text {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      color: var(--color-sage);
+    }
+
+    .card-title {
+      font-family: var(--font-billabong);
+      font-size: clamp(2.75rem, 8.5vw, 4rem);
+      font-weight: 400;
+      color: var(--color-dark-brown);
+      line-height: 1.15;
+      letter-spacing: 0.02em;
+    }
+
+    /* Hosts Identification */
+    .hosts-section,
+    .hosts-house-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      width: 100%;
+    }
+
+    .inviting-phrase {
+      font-size: clamp(0.95rem, 2.8vw, 1.1rem);
+      color: var(--color-brown-muted);
+      font-style: italic;
+      font-family: var(--font-serif);
+      line-height: 1.35;
+    }
+
+    .family-name {
+      font-family: var(--font-serif);
+      font-size: clamp(2.15rem, 6.8vw, 2.85rem);
+      font-weight: 600;
+      color: var(--color-dark-brown);
+      letter-spacing: 0.025em;
+      line-height: 1.18;
+    }
+
+    .house-badge-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      margin: 0.2rem auto 0.5rem auto;
+    }
+
+    .house-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      border: none;
+      padding: 0.1rem 0;
+    }
+
+    .house-name {
+      font-family: var(--font-dm-serif);
+      font-size: clamp(2.2rem, 6.8vw, 3rem);
+      font-weight: 400;
+      color: var(--color-terracotta-dark);
+      letter-spacing: 0.03em;
+      line-height: 1.15;
+    }
+
+    /* ==========================================================================
+       CLASSIC DATE & TIME SECTION (Reference Model with T-Junction Rule Borders)
+       ========================================================================== */
+
+    .classic-date-model {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      max-width: 440px;
+      margin: 1.1rem auto 0.9rem auto;
+      gap: clamp(0.6rem, 2.4vw, 0.9rem);
+      user-select: none;
+    }
+
+    /* Left & Right Side Columns (Framed by independent horizontal dotted lines) */
+    .date-side-col {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-top: 1.5px dotted rgba(165, 120, 90, 0.75);
+      border-bottom: 1.5px dotted rgba(165, 120, 90, 0.75);
+      padding: 0.42rem 0.6rem;
+    }
+
+    .date-side-col .side-text {
+      font-family: var(--font-serif);
+      font-size: clamp(0.78rem, 2.5vw, 0.95rem);
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--color-dark-brown);
+      white-space: nowrap;
+    }
+
+    /* Center Column (Month, Date Number, Year flanked by dotted vertical lines) */
+    .date-center-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border-left: 1.5px dotted rgba(165, 120, 90, 0.75);
+      border-right: 1.5px dotted rgba(165, 120, 90, 0.75);
+      padding: 0.45rem 1.15rem;
+      min-width: 96px;
+    }
+
+    .center-month {
+      font-family: var(--font-serif);
+      font-size: clamp(0.72rem, 2.2vw, 0.82rem);
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--color-dark-brown);
+      line-height: 1.2;
+    }
+
+    .center-number {
+      font-family: var(--font-serif);
+      font-size: clamp(2.3rem, 7.2vw, 3rem);
+      font-weight: 700;
+      color: var(--color-terracotta-dark);
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      margin: 0.05rem 0;
+    }
+
+    .center-year {
+      font-family: var(--font-serif);
+      font-size: clamp(0.72rem, 2.2vw, 0.82rem);
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      color: var(--color-dark-brown);
+      line-height: 1.2;
+    }
+
+    /* Sophisticated Minimal Location / Venue Display */
+    .ceremony-venue-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      max-width: 440px;
+      margin-top: 0.25rem;
+      padding: 0.4rem 0.5rem;
+      background: transparent;
+      border: none;
+      box-shadow: none;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+    }
+
+    .venue-address-container {
+      display: inline-flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      gap: 0.85rem;
+    }
+
+    .venue-icon-badge {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: var(--color-sage-tint);
+      color: var(--color-sage);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 2px 6px rgba(135, 151, 122, 0.12);
+    }
+
+    .venue-address {
+      font-family: var(--font-serif);
+      font-style: normal;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: left;
+      gap: 0.15rem;
+      font-size: clamp(1.05rem, 3.2vw, 1.22rem);
+      font-weight: 600;
+      color: var(--color-dark-brown);
+      line-height: 1.25;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .address-line {
+      display: block;
+      white-space: normal;
+    }
+
+    /* Blessing Note */
+    .blessing-note {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 0.98rem;
+      line-height: 1.45;
+      color: var(--color-brown-muted);
+      padding: 0 0.5rem;
+      max-width: 480px;
+    }
+
+    /* Action Buttons */
+    .card-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      width: 100%;
+      max-width: 490px;
+      justify-content: center;
+      margin-top: 0.2rem;
+    }
+
+    .btn-action {
+      flex: 1 1 calc(50% - 0.5rem);
+      min-width: 135px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      padding: 0.75rem 1rem;
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      font-weight: 600;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .btn-calendar {
+      background-color: var(--color-sage);
+      color: #FFFFFF;
+      box-shadow: 0 3px 12px rgba(135, 151, 122, 0.25);
+    }
+
+    .btn-calendar:hover {
+      background-color: #728266;
+      transform: translateY(-1px);
+      box-shadow: 0 5px 16px rgba(135, 151, 122, 0.35);
+    }
+
+    .btn-maps {
+      background-color: var(--color-terracotta);
+      color: #FFFFFF;
+      box-shadow: 0 3px 12px rgba(185, 111, 85, 0.25);
+    }
+
+    .btn-maps:hover {
+      background-color: var(--color-terracotta-dark);
+      transform: translateY(-1px);
+      box-shadow: 0 5px 16px rgba(185, 111, 85, 0.35);
+    }
+
+    .btn-copy {
+      flex: 1 1 100%;
+      background-color: rgba(255, 255, 255, 0.8);
+      color: var(--color-dark-brown);
+      border: 1px solid rgba(45, 41, 37, 0.18);
+    }
+
+    .btn-copy:hover {
+      background-color: rgba(255, 255, 255, 1);
+      border-color: rgba(45, 41, 37, 0.35);
+    }
+
+    .btn-action:focus-visible {
+      outline: 2px solid var(--color-dark-brown);
+      outline-offset: 2px;
+    }
+
+    /* Replay entrance */
+    .replay-entrance-box {
+      margin-top: 0.25rem;
+    }
+
+    .btn-replay {
+      background: none;
+      border: none;
+      font-family: var(--font-sans);
+      font-size: 0.78rem;
+      color: var(--color-brown-muted);
+      cursor: pointer;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      padding: 0.35rem 0.75rem;
+      transition: color 0.2s ease;
+    }
+
+    .btn-replay:hover {
+      color: var(--color-terracotta);
+    }
+
+    /* ==========================================================================
+       SCREEN 1: FULL-SCREEN CARVED WOODEN DOUBLE DOORS OVERLAY
+       ========================================================================== */
+
+    .screen-entrance {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      cursor: pointer;
+      user-select: none;
+      z-index: 20;
+      pointer-events: auto;
+      visibility: visible;
+      opacity: 1;
+      background: transparent;
+      transition: opacity 0.3s ease;
+    }
+
+    .screen-entrance:not(.active),
+    .screen-entrance.is-opened {
+      opacity: 0 !important;
+      pointer-events: none !important;
+      visibility: hidden !important;
+      display: none !important;
+    }
+
+    /* Full-Screen 3D Perspective Stage */
+    .full-doors-stage {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      perspective: 1400px;
+      perspective-origin: 50% 50%;
+      z-index: 6;
+      overflow: hidden;
+    }
+
+    /* Individual Full-Screen Carved Wooden Door Leaves (with 2px overlap to eliminate hairline center gap) */
+    .full-door-leaf {
+      position: absolute;
+      top: 0;
+      height: 100%;
+      width: calc(50% + 2px);
+      will-change: transform, opacity;
+      transition: transform 2.6s cubic-bezier(0.2, 0.75, 0.25, 1), opacity 0.45s ease 2.2s;
+      overflow: hidden;
+      background-color: #2D1A0E;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+    }
+
+    /* Inner 200% width container ensures full-door image aligns seamlessly across both leaves */
+    .full-door-inner {
+      position: absolute;
+      top: 0;
+      width: 200%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    .full-door-leaf.leaf-left .full-door-inner {
+      left: 0;
+    }
+
+    .full-door-leaf.leaf-right .full-door-inner {
+      right: 0;
+    }
+
+    .full-leaf-img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      object-position: center center;
+      pointer-events: none;
+      user-select: none;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+    }
+
+    /* Left Door Leaf (Hinged at left screen edge) */
+    .full-door-leaf.leaf-left {
+      left: 0;
+      transform-origin: left center;
+      transform: rotateY(0deg);
+      background-image: url('assets/full-wooden-door.jpg'), url('assets/door.jpg');
+      background-size: 200% 100%;
+      background-position: left center;
+      background-repeat: no-repeat;
+    }
+
+    /* Right Door Leaf (Hinged at right screen edge) */
+    .full-door-leaf.leaf-right {
+      right: 0;
+      transform-origin: right center;
+      transform: rotateY(0deg);
+      background-image: url('assets/full-wooden-door.jpg'), url('assets/door.jpg');
+      background-size: 200% 100%;
+      background-position: right center;
+      background-repeat: no-repeat;
+    }
+
+    .leaf-shadow-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(0, 0, 0, 0.35) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity 2.6s ease;
+      pointer-events: none;
+    }
+
+    /* Center Seam Dividing the Two Doors */
+    .door-center-seam {
+      position: absolute;
+      top: 0;
+      left: calc(50% - 1.5px);
+      width: 3px;
+      height: 100%;
+      z-index: 8;
+      pointer-events: none;
+      background: linear-gradient(180deg, #1C0F08 0%, #3D2214 50%, #150B06 100%);
+      box-shadow: 0 0 6px rgba(0, 0, 0, 0.7);
+    }
+
+    /* Instantly and permanently remove center seam upon opening */
+    .screen-entrance.is-opening .door-center-seam,
+    .screen-entrance.is-opened .door-center-seam,
+    .screen-entrance:not(.active) .door-center-seam {
+      opacity: 0 !important;
+      visibility: hidden !important;
+      display: none !important;
+      transition: none !important;
+    }
+
+    /* Floating Tap Prompt Overlay */
+    .grand-entrance-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 15;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      text-align: center;
+      padding: 1.5rem 1.25rem 5vh 1.25rem;
+      pointer-events: none;
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    .grand-tap-prompt {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: rgba(30, 20, 14, 0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1.5px solid rgba(255, 249, 243, 0.55);
+      border-radius: 50px;
+      padding: 0.65rem 1.45rem;
+      box-shadow: 
+        0 10px 25px rgba(0, 0, 0, 0.6),
+        0 0 25px rgba(230, 197, 127, 0.3);
+      cursor: pointer;
+      pointer-events: auto;
+      transition: transform 0.25s ease, background-color 0.25s ease, border-color 0.25s ease;
+    }
+
+    .grand-tap-prompt:hover {
+      transform: translateY(-2px) scale(1.02);
+      background: rgba(45, 30, 22, 0.96);
+      border-color: rgba(255, 249, 243, 0.8);
+    }
+
+    .tap-icon-circle {
+      position: relative;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--color-terracotta);
+      color: var(--color-ivory);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .tap-pulse-beacon {
+      position: absolute;
+      inset: -3px;
+      border-radius: 50%;
+      border: 2px solid var(--color-terracotta);
+      animation: pulseBeacon 2s infinite;
+      pointer-events: none;
+    }
+
+    .grand-tap-text {
+      font-family: var(--font-sans);
+      font-size: 0.88rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      color: var(--color-ivory);
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+    }
+
+    /* Door Opening States (Direct wide reveal of invitation screen behind) */
+    .screen-entrance.is-opening .grand-entrance-overlay {
+      opacity: 0;
+      transform: translateY(-20px) scale(0.96);
+      pointer-events: none;
+    }
+
+    .screen-entrance.is-opening .full-door-leaf.leaf-left,
+    .screen-entrance.is-opened .full-door-leaf.leaf-left {
+      transform: rotateY(-118deg);
+      opacity: 0;
+    }
+
+    .screen-entrance.is-opening .full-door-leaf.leaf-right,
+    .screen-entrance.is-opened .full-door-leaf.leaf-right {
+      transform: rotateY(118deg);
+      opacity: 0;
+    }
+
+    .screen-entrance.is-opening .leaf-shadow-overlay {
+      opacity: 0.55;
+    }
+
+    @keyframes pulseBeacon {
+      0% {
+        transform: scale(0.9);
+        opacity: 0.9;
+      }
+      70% {
+        transform: scale(1.7);
+        opacity: 0;
+      }
+      100% {
+        transform: scale(0.9);
+        opacity: 0;
+      }
+    }
+
+    /* ==========================================================================
+       STAGGERED ENTRANCE ANIMATIONS (Screen 2 Invitation Reveal)
+       Subtle, slow, and high-end digital invitation unfolding
+       ========================================================================== */
+
+    @keyframes elegantRevealUp {
+      0% {
+        opacity: 0;
+        transform: translateY(28px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Before doors open, items wait gracefully in prepared state */
+    .screen-card:not(.is-revealed) .stagger-item {
+      opacity: 0;
+      transform: translateY(28px);
+      will-change: transform, opacity;
+    }
+
+    /* Sequential slow, graceful entrance cascade (1.65s gentle glide) */
+    .screen-card.is-revealed .stagger-item {
+      animation: elegantRevealUp 1.65s cubic-bezier(0.12, 1, 0.25, 1) both;
+      will-change: transform, opacity;
+    }
+
+    .screen-card.is-revealed .stagger-1 { animation-delay: 0.55s; }
+    .screen-card.is-revealed .stagger-2 { animation-delay: 0.95s; }
+    .screen-card.is-revealed .stagger-3 { animation-delay: 1.40s; }
+    .screen-card.is-revealed .stagger-4 { animation-delay: 1.90s; }
+    .screen-card.is-revealed .stagger-5 { animation-delay: 2.40s; }
+    .screen-card.is-revealed .stagger-6 { animation-delay: 2.90s; }
+    .screen-card.is-revealed .stagger-7 { animation-delay: 3.40s; }
+    .screen-card.is-revealed .stagger-8 { animation-delay: 3.90s; }
+    .screen-card.is-revealed .stagger-9 { animation-delay: 4.40s; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .screen-card:not(.is-revealed) .stagger-item,
+      .screen-card.is-revealed .stagger-item {
+        opacity: 1 !important;
+        transform: none !important;
+        animation: none !important;
+      }
+    }
+
+    /* Floating Background Music Control */
+    .btn-music-toggle {
+      position: fixed;
+      top: clamp(1rem, 3vh, 1.5rem);
+      right: clamp(1rem, 3vw, 1.5rem);
+      z-index: 90;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(135, 151, 122, 0.35);
+      color: var(--color-dark-brown);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 16px rgba(45, 41, 37, 0.1);
+      transition: all 0.25s ease;
+      outline: none;
+    }
+
+    .btn-music-toggle:hover {
+      transform: scale(1.08);
+      background: rgba(255, 255, 255, 0.98);
+      border-color: var(--color-sage);
+      box-shadow: 0 6px 20px rgba(45, 41, 37, 0.16);
+    }
+
+    .btn-music-toggle:focus-visible {
+      outline: 2px solid var(--color-dark-brown);
+      outline-offset: 2px;
+    }
+
+    .btn-music-toggle .icon-music-playing {
+      display: none;
+    }
+
+    .btn-music-toggle .icon-music-muted {
+      display: block;
+    }
+
+    .btn-music-toggle.is-playing {
+      color: var(--color-terracotta);
+      border-color: rgba(185, 111, 85, 0.45);
+      box-shadow: 0 4px 18px rgba(185, 111, 85, 0.25);
+    }
+
+    .btn-music-toggle.is-playing .icon-music-playing {
+      display: block;
+      animation: musicIconPulse 2s ease-in-out infinite;
+    }
+
+    .btn-music-toggle.is-playing .icon-music-muted {
+      display: none;
+    }
+
+    @keyframes musicIconPulse {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.12);
+      }
+    }
+
+    /* Toast Notification */
+    .toast-notification {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(80px);
+      background: var(--color-dark-brown);
+      color: var(--color-ivory);
+      padding: 0.65rem 1.3rem;
+      border-radius: 50px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      z-index: 999;
+      opacity: 0;
+      pointer-events: none;
+      transition: transform 0.3s var(--transition-smooth), opacity 0.3s ease;
+    }
+
+    .toast-notification.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 480px) {
+      .invitation-container {
+        padding: clamp(3.5rem, 8vh, 5rem) 1.15rem 3rem 1.15rem;
+        gap: 1.15rem;
+      }
+      .bismillah-block {
+        margin-top: clamp(1rem, 3vh, 2rem);
+      }
+      .event-details-grid {
+        padding: 1rem 1.1rem;
+      }
+      .grand-tap-prompt {
+        padding: 0.55rem 1.2rem;
+      }
+      .grand-tap-text {
+        font-size: 0.8rem;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .btn-action {
+        flex: 1 1 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Main Viewport Container -->
+  <main class="app-viewport">
+
+    <!-- ====================================================================== -->
+    <!-- SCREEN 2: MAIN HOUSEWARMING INVITATION (Full-Screen Edge-to-Edge)      -->
+    <!-- ====================================================================== -->
+    <section id="screen-card" class="screen-card" aria-label="Housewarming Invitation Details">
+      <div class="invitation-container">
+
+        <!-- Bismillah Calligraphy (Arabic) -->
+        <div class="bismillah-block stagger-item stagger-1" aria-label="Bismillahir Rahmanir Raheem">
+          <p class="bismillah-arabic">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
+          <p class="bismillah-translation">In the Name of Allah, the Most Gracious, the Most Merciful</p>
+        </div>
+
+        <div class="card-divider stagger-item stagger-2">
+          <span class="divider-line"></span>
+          <span class="divider-icon">✦</span>
+          <span class="divider-line"></span>
+        </div>
+
+        <!-- Invitation Header -->
+        <div class="invitation-header stagger-item stagger-3">
+          <span class="eyebrow-text">YOU ARE CORDIALLY INVITED TO OUR</span>
+          <h2 class="card-title">Housewarming celebration</h2>
+        </div>
+
+        <!-- Family Hosts Identification -->
+        <div class="hosts-section stagger-item stagger-4">
+          <p class="inviting-phrase">Hosted with warm hearts & joy by</p>
+          <h3 class="family-name" id="display-family-name">Musthafa & Fathima</h3>
+        </div>
+
+        <!-- Classic Date & Time Section (Reference Photo Model) -->
+        <div class="classic-date-model stagger-item stagger-5" aria-label="Event Date and Time">
+          
+          <!-- Left Column: Day with horizontal border lines -->
+          <div class="date-side-col date-side-left">
+            <span class="side-text" id="display-day">SUNDAY</span>
+          </div>
+
+          <!-- Center Column: Month, Date Number, Year flanked by vertical lines -->
+          <div class="date-center-col">
+            <span class="center-month" id="display-month">NOVEMBER</span>
+            <span class="center-number" id="display-date-number">15</span>
+            <span class="center-year" id="display-year">2026</span>
+          </div>
+
+          <!-- Right Column: Time with horizontal border lines -->
+          <div class="date-side-col date-side-right">
+            <span class="side-text" id="display-time">AT 11:00 AM</span>
+          </div>
+
+        </div>
+
+        <!-- House Name Badge Section (Directly underneath Date & Time) -->
+        <div class="house-badge-container stagger-item stagger-6">
+          <div class="house-badge">
+            <p class="house-name" id="display-house-name">AL-RAHMA</p>
+          </div>
+        </div>
+
+        <!-- Venue & Location Section -->
+        <div class="ceremony-venue-section stagger-item stagger-7">
+          <div class="venue-address-container">
+            <div class="venue-icon-badge" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+            </div>
+            <address class="venue-address" id="display-address">
+              <span class="address-line">ARICHOL</span>
+              <span class="address-line">KOTTAKKAL</span>
+            </address>
+          </div>
+        </div>
+
+        <!-- Warm Note -->
+        <p class="blessing-note stagger-item stagger-8">
+          “Your presence, prayers, and heartfelt blessings will fill our new home with light and warmth.”
+        </p>
+
+        <!-- Quick Action Utilities -->
+        <div class="card-actions stagger-item stagger-9">
+          <button type="button" class="btn-action btn-calendar" id="btn-calendar" title="Save to Google Calendar or Download Event">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+              <line x1="16" y1="2" x2="16" y2="6"></line>
+              <line x1="8" y1="2" x2="8" y2="6"></line>
+              <line x1="3" y1="10" x2="21" y2="10"></line>
+            </svg>
+            Add to Calendar
+          </button>
+
+          <button type="button" class="btn-action btn-maps" id="btn-maps" title="Open location in Google Maps">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="3 11 22 2 13 21 11 13 3 11"></polygon>
+            </svg>
+            Get Directions
+          </button>
+
+        </div>
+
+
+      </div>
+    </section>
+
+    <!-- ====================================================================== -->
+    <!-- SCREEN 1: Full-Screen Grand Carved Wooden Double Doors Overlay         -->
+    <!-- ====================================================================== -->
+    <section id="screen-entrance" class="screen-entrance active" aria-label="Grand Carved Wooden Door Entrance" tabindex="0">
+      
+      <!-- Full-Screen 3D Double Doors Assembly -->
+      <div class="full-doors-stage" id="full-doors-stage">
+        
+        <!-- Left Full-Screen Carved Wooden Door Leaf -->
+        <div class="full-door-leaf leaf-left" id="door-leaf-left">
+          <div class="full-door-inner">
+            <img src="assets/full-wooden-door.jpg" alt="Left Carved Wooden Door" class="full-leaf-img" draggable="false" onerror="if (this.src.indexOf('door.jpg') !== -1) { this.src='assets/full-door-left.png'; } else { this.src='assets/door.jpg'; }">
+          </div>
+          <div class="leaf-shadow-overlay"></div>
+        </div>
+
+        <!-- Center Seam Shadow Line -->
+        <div class="door-center-seam"></div>
+
+        <!-- Right Full-Screen Carved Wooden Door Leaf -->
+        <div class="full-door-leaf leaf-right" id="door-leaf-right">
+          <div class="full-door-inner">
+            <img src="assets/full-wooden-door.jpg" alt="Right Carved Wooden Door" class="full-leaf-img" draggable="false" onerror="if (this.src.indexOf('door.jpg') !== -1) { this.src='assets/full-door-right.png'; } else { this.src='assets/door.jpg'; }">
+          </div>
+          <div class="leaf-shadow-overlay"></div>
+        </div>
+
+      </div>
+
+      <!-- Floating Tap Prompt -->
+      <div class="grand-entrance-overlay" id="grand-entrance-overlay">
+        <div class="grand-tap-prompt" id="touch-hint">
+          <div class="tap-icon-circle">
+            <span class="tap-pulse-beacon"></span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+              <line x1="9" y1="3" x2="9" y2="21"></line>
+              <circle cx="14" cy="12" r="1.5"></circle>
+            </svg>
+          </div>
+          <span class="grand-tap-text">Tap the door to open</span>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- Background Music Audio Element -->
+  <audio id="bg-music" src="assets/song.mp3" loop></audio>
+
+  <!-- Subtle Floating Audio Mute/Unmute Button -->
+  <button type="button" class="btn-music-toggle" id="btn-music-toggle" aria-label="Toggle background music" title="Toggle background music">
+    <!-- Unmuted / Playing Icon -->
+    <svg class="icon-music-playing" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+      <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+      <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+    </svg>
+    <!-- Muted / Paused Icon -->
+    <svg class="icon-music-muted" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polygon points="11 5 6 9 2 9 2 15 6 15 11 5"></polygon>
+      <line x1="23" y1="9" x2="17" y2="15"></line>
+      <line x1="17" y1="9" x2="23" y2="15"></line>
+    </svg>
+  </button>
+
+  <!-- Toast Notification for Actions -->
+  <div id="toast" class="toast-notification" role="status" aria-live="polite"></div>
+
+  <!-- ====================================================================== -->
+  <!-- JAVASCRIPT: Logic, Audio Chime, Direct 2-Second Door Reveal            -->
+  <!-- ====================================================================== -->
+  <script>
+    /**
+     * Housewarming Invitation Web Application
+     * Configurable, accessible, and responsive single-file app
+     */
+
+    // ============================================================================
+    // INVITATION CONFIGURATION - EDIT DETAILS HERE
+    // ============================================================================
+    const INVITATION_CONFIG = {
+      // Family & House Info
+      familyName: "Musthafa & Fathima",
+      houseName: "AL-RAHMA",
+      
+      // Date & Time Breakdown (Classic Layout)
+      dayOfWeek: "SUNDAY",
+      dayNumber: "15",
+      month: "NOVEMBER",
+      year: "2026",
+      timeDisplay: "AT 11:00 AM",
+      timeSubtext: "Lunch & Blessings to follow",
+
+      // Calendar Event Details (for Add to Calendar)
+      calendarTitle: "Housewarming celebration - AL-RAHMA",
+      calendarDescription: "Join us in celebrating the housewarming of our new home, AL-RAHMA. Your presence and blessings mean the world to us.",
+      eventStartIso: "20261115T110000",
+      eventEndIso: "20261115T160000",
+
+      // Venue & Address
+      fullAddress: "ARICHOL, KOTTAKKAL",
+      addressLines: [
+        "ARICHOL",
+        "KOTTAKKAL"
+      ],
+      googleMapsQuery: "ARICHOL, KOTTAKKAL"
+    };
+
+    document.addEventListener("DOMContentLoaded", () => {
+      // Screen Entrance Layer
+      const screenEntrance = document.getElementById("screen-entrance");
+
+      // Grand Entrance Interactive Elements
+      const touchHint = document.getElementById("touch-hint");
+      const btnReplayDoor = document.getElementById("btn-replay-door");
+
+      // Display fields
+      const displayFamilyName = document.getElementById("display-family-name");
+      const displayHouseName = document.getElementById("display-house-name");
+      const displayDay = document.getElementById("display-day");
+      const displayDateNumber = document.getElementById("display-date-number");
+      const displayMonth = document.getElementById("display-month");
+      const displayYear = document.getElementById("display-year");
+      const displayTime = document.getElementById("display-time");
+      const displayAddress = document.getElementById("display-address");
+
+      // Action Buttons
+      const btnCalendar = document.getElementById("btn-calendar");
+      const btnMaps = document.getElementById("btn-maps");
+      const btnCopy = document.getElementById("btn-copy");
+      const copyBtnText = document.getElementById("copy-btn-text");
+      const toast = document.getElementById("toast");
+
+      // State flag
+      let isDoorOpening = false;
+
+      // ==========================================================================
+      // INITIALIZE DYNAMIC TEXT FROM CONFIG
+      // ==========================================================================
+      function applyConfig() {
+        if (displayFamilyName) displayFamilyName.textContent = INVITATION_CONFIG.familyName;
+        if (displayHouseName) displayHouseName.textContent = INVITATION_CONFIG.houseName;
+        if (displayDay) displayDay.textContent = INVITATION_CONFIG.dayOfWeek;
+        if (displayDateNumber) displayDateNumber.textContent = INVITATION_CONFIG.dayNumber;
+        if (displayMonth) displayMonth.textContent = INVITATION_CONFIG.month;
+        if (displayYear) displayYear.textContent = INVITATION_CONFIG.year;
+        if (displayTime) displayTime.textContent = INVITATION_CONFIG.timeDisplay;
+        if (displayAddress) {
+          const lines = INVITATION_CONFIG.addressLines && INVITATION_CONFIG.addressLines.length > 0
+            ? INVITATION_CONFIG.addressLines
+            : [
+                "ARICHOL",
+                "KOTTAKKAL"
+              ];
+          displayAddress.innerHTML = lines
+            .map(line => `<span class="address-line">${line}</span>`)
+            .join("");
+        }
+      }
+
+      applyConfig();
+
+      // ==========================================================================
+      // AUDIO FEEDBACK (Resonant Acoustic Chime via Web Audio API)
+      // ==========================================================================
+      function playWarmChime() {
+        try {
+          const AudioContext = window.AudioContext || window.webkitAudioContext;
+          if (!AudioContext) return;
+          const ctx = new AudioContext();
+
+          // Gentle acoustic chime chord: C5 (523Hz), E5 (659Hz), G5 (784Hz), C6 (1046Hz)
+          const frequencies = [523.25, 659.25, 783.99, 1046.5];
+          const now = ctx.currentTime;
+
+          frequencies.forEach((freq, index) => {
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+
+            osc.type = "sine";
+            osc.frequency.setValueAtTime(freq, now + index * 0.12);
+
+            gain.gain.setValueAtTime(0.0001, now + index * 0.12);
+            gain.gain.exponentialRampToValueAtTime(0.06, now + index * 0.12 + 0.08);
+            gain.gain.exponentialRampToValueAtTime(0.0001, now + index * 0.12 + 1.8);
+
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+
+            osc.start(now + index * 0.12);
+            osc.stop(now + index * 0.12 + 1.9);
+          });
+        } catch {
+          // Audio gracefully ignored if browser autoplay restriction applies
+        }
+      }
+
+      // ==========================================================================
+      // SMOOTH DOOR OPENING -> DIRECT CLEAN REVEAL OF INVITATION (ZERO ARTIFACTS)
+      // ==========================================================================
+      function openGrandDoors() {
+        if (isDoorOpening) return;
+        isDoorOpening = true;
+
+        // Trigger gentle resonant chime
+        playWarmChime();
+
+        // Trigger background music playback on user interaction
+        const bgMusic = document.getElementById("bg-music");
+        if (bgMusic) {
+          bgMusic.play().catch(e => console.log(e));
+        }
+
+        // Immediately hide center seam so it never appears during or after opening
+        const seam = screenEntrance.querySelector(".door-center-seam");
+        if (seam) seam.style.display = "none";
+
+        // Doors swing wide open smoothly directly revealing Screen 2 behind
+        screenEntrance.classList.add("is-opening");
+
+        // Trigger graceful staggered entrance of Screen 2 text elements
+        const screenCard = document.getElementById("screen-card");
+        if (screenCard) screenCard.classList.add("is-revealed");
+
+        // When doors reach full open position, cleanly complete the transition with zero artifacts
+        setTimeout(() => {
+          screenEntrance.classList.add("is-opened");
+          screenEntrance.classList.remove("active");
+          screenEntrance.style.display = "none";
+          isDoorOpening = false;
+        }, 2600);
+      }
+
+      // ==========================================================================
+      // BACKGROUND MUSIC TOGGLE CONTROL
+      // ==========================================================================
+      const btnMusicToggle = document.getElementById("btn-music-toggle");
+      const bgMusic = document.getElementById("bg-music");
+
+      function updateMusicToggleState() {
+        if (!btnMusicToggle || !bgMusic) return;
+        const isPlaying = !bgMusic.paused && !bgMusic.muted;
+        btnMusicToggle.classList.toggle("is-playing", isPlaying);
+        btnMusicToggle.setAttribute("aria-label", isPlaying ? "Mute background music" : "Play background music");
+        btnMusicToggle.setAttribute("title", isPlaying ? "Mute background music" : "Play background music");
+      }
+
+      if (btnMusicToggle && bgMusic) {
+        btnMusicToggle.addEventListener("click", (e) => {
+          e.stopPropagation();
+          if (bgMusic.paused) {
+            bgMusic.muted = false;
+            bgMusic.play().then(() => {
+              updateMusicToggleState();
+              showToast("Music playing");
+            }).catch(e => console.log(e));
+          } else {
+            bgMusic.pause();
+            updateMusicToggleState();
+            showToast("Music paused");
+          }
+        });
+
+        bgMusic.addEventListener("play", updateMusicToggleState);
+        bgMusic.addEventListener("pause", updateMusicToggleState);
+      }
+
+      // Initial check if door screen is already inactive
+      const screenCard = document.getElementById("screen-card");
+      if (!screenEntrance || !screenEntrance.classList.contains("active")) {
+        if (screenCard) screenCard.classList.add("is-revealed");
+      }
+
+      // Tap anywhere on Screen 1 doors to open
+      if (screenEntrance) {
+        screenEntrance.addEventListener("click", openGrandDoors);
+        screenEntrance.addEventListener("keydown", (e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            openGrandDoors();
+          }
+        });
+      }
+
+      if (touchHint) {
+        touchHint.addEventListener("click", (e) => {
+          e.stopPropagation();
+          openGrandDoors();
+        });
+      }
+
+      // ==========================================================================
+      // REVISIT DOOR ENTRANCE
+      // ==========================================================================
+      if (btnReplayDoor) {
+        btnReplayDoor.addEventListener("click", () => {
+          screenEntrance.classList.remove("is-opening");
+          screenEntrance.classList.add("active");
+        });
+      }
+
+      // ==========================================================================
+      // TOAST NOTIFICATION UTILITY
+      // ==========================================================================
+      let toastTimer = null;
+      function showToast(message) {
+        if (!toast) return;
+        toast.textContent = message;
+        toast.classList.add("show");
+
+        if (toastTimer) clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => {
+          toast.classList.remove("show");
+        }, 2600);
+      }
+
+      // ==========================================================================
+      // ACTION BUTTONS: CALENDAR, MAPS, COPY ADDRESS
+      // ==========================================================================
+
+      // 1. Copy Address
+      if (btnCopy) {
+        btnCopy.addEventListener("click", async () => {
+          try {
+            await navigator.clipboard.writeText(INVITATION_CONFIG.fullAddress);
+            if (copyBtnText) copyBtnText.textContent = "Address Copied!";
+            showToast("Address copied to clipboard!");
+            setTimeout(() => {
+              if (copyBtnText) copyBtnText.textContent = "Copy Address";
+            }, 2200);
+          } catch {
+            showToast("Address: " + INVITATION_CONFIG.fullAddress);
+          }
+        });
+      }
+
+      // 2. Open Google Maps
+      if (btnMaps) {
+        btnMaps.addEventListener("click", () => {
+          const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(INVITATION_CONFIG.googleMapsQuery || INVITATION_CONFIG.fullAddress)}`;
+          window.open(mapsUrl, "_blank", "noopener,noreferrer");
+        });
+      }
+
+      // 3. Add to Calendar (Google Calendar link + .ics fallback)
+      if (btnCalendar) {
+        btnCalendar.addEventListener("click", () => {
+          const gcalUrl = new URL("https://calendar.google.com/calendar/render");
+          gcalUrl.searchParams.set("action", "TEMPLATE");
+          gcalUrl.searchParams.set("text", INVITATION_CONFIG.calendarTitle);
+          gcalUrl.searchParams.set("dates", `${INVITATION_CONFIG.eventStartIso}/${INVITATION_CONFIG.eventEndIso}`);
+          gcalUrl.searchParams.set("details", INVITATION_CONFIG.calendarDescription);
+          gcalUrl.searchParams.set("location", INVITATION_CONFIG.fullAddress);
+
+          downloadIcsFile();
+          window.open(gcalUrl.toString(), "_blank", "noopener,noreferrer");
+          showToast("Adding event to Calendar...");
+        });
+      }
+
+      function downloadIcsFile() {
+        const icsContent = [
+          "BEGIN:VCALENDAR",
+          "VERSION:2.0",
+          "PRODID:-//Housewarming Invitation//EN",
+          "CALSCALE:GREGORIAN",
+          "BEGIN:VEVENT",
+          `SUMMARY:${INVITATION_CONFIG.calendarTitle}`,
+          `DESCRIPTION:${INVITATION_CONFIG.calendarDescription}`,
+          `LOCATION:${INVITATION_CONFIG.fullAddress}`,
+          `DTSTART:${INVITATION_CONFIG.eventStartIso}`,
+          `DTEND:${INVITATION_CONFIG.eventEndIso}`,
+          "STATUS:CONFIRMED",
+          "END:VEVENT",
+          "END:VCALENDAR"
+        ].join("\r\n");
+
+        const blob = new Blob([icsContent], { type: "text/calendar;charset=utf-8" });
+        const link = document.createElement("a");
+        link.href = window.URL.createObjectURL(blob);
+        link.setAttribute("download", "Housewarming-Invitation.ics");
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }
+
+    });
+  </script>
+</body>
+</html>

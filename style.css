@@ -1,0 +1,960 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap');
+
+/* ==========================================================================
+   Housewarming Invitation Stylesheet
+   Palette:
+   - Warm Ivory:  #FFF9F3
+   - Sage Green:  #87977A
+   - Terracotta:  #B96F55
+   - Dark Brown:  #2D2925
+   ========================================================================== */
+
+@font-face {
+  font-family: 'Billabong';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Billabong'), url('https://fonts.cdnfonts.com/s/13949/Billabong.woff') format('woff');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Didot';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Didot'), local('Didot LT STD'), url('https://fonts.cdnfonts.com/s/14050/Didot.woff') format('woff');
+  font-display: swap;
+}
+
+:root {
+  --color-ivory: #FFF9F3;
+  --color-ivory-warm: #FAF2E8;
+  --color-ivory-card: #FFFCF9;
+  --color-sage: #87977A;
+  --color-sage-light: #9DAE90;
+  --color-sage-tint: #EEF2EB;
+  --color-terracotta: #B96F55;
+  --color-terracotta-dark: #9E563E;
+  --color-terracotta-light: #CF846B;
+  --color-terracotta-tint: #F8EEEA;
+  --color-dark-brown: #2D2925;
+  --color-brown-muted: #5F564F;
+  --color-gold-brass: #C5A059;
+  --color-gold-shine: #E6C57F;
+  --color-gold-dark: #917032;
+
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-arabic: 'Amiri', serif;
+  --font-billabong: 'Billabong', cursive, 'Brush Script MT', 'Cormorant Garamond', serif;
+  --font-didot: 'Didot', 'GFS Didot', 'Bodoni MT', Didot, 'Didot LT STD', serif;
+  --font-dm-serif: 'DM Serif Display', Georgia, serif;
+
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+
+  --shadow-subtle: 0 4px 20px rgba(45, 41, 37, 0.05);
+  --shadow-card: 0 16px 40px -10px rgba(45, 41, 37, 0.09), 0 2px 6px rgba(45, 41, 37, 0.04);
+  --shadow-door: 0 20px 45px -8px rgba(45, 41, 37, 0.22);
+  --shadow-glow: 0 0 50px rgba(245, 178, 122, 0.45);
+
+  --transition-smooth: cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Base Reset & Layout */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: var(--color-ivory);
+  color: var(--color-dark-brown);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Master App Viewport Container */
+.app-viewport {
+  position: relative;
+  width: 100%;
+  height: 100dvh;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: 
+    radial-gradient(circle at 50% 20%, rgba(255, 249, 243, 0.95), rgba(250, 242, 232, 0.85) 60%, rgba(238, 228, 216, 0.7)),
+    linear-gradient(180deg, var(--color-ivory) 0%, #F5ECE0 100%);
+  overflow: hidden;
+}
+
+/* Screen Switcher Mechanics */
+.screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  transition: opacity 0.8s var(--transition-smooth), transform 0.8s var(--transition-smooth), visibility 0.8s;
+  padding: 1.25rem;
+}
+
+.screen.active {
+  opacity: 1;
+  pointer-events: auto;
+  visibility: visible;
+  z-index: 10;
+}
+
+/* ==========================================================================
+   SCREEN 1: FULL-SCREEN CARVED WOODEN DOUBLE DOORS
+   ========================================================================== */
+
+.screen-entrance {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  cursor: pointer;
+  user-select: none;
+  z-index: 20;
+  pointer-events: auto;
+  visibility: visible;
+  opacity: 1;
+  background: transparent;
+  transition: opacity 0.3s ease;
+}
+
+.screen-entrance:not(.active),
+.screen-entrance.is-opened {
+  opacity: 0 !important;
+  pointer-events: none !important;
+  visibility: hidden !important;
+  display: none !important;
+}
+
+/* Full-Screen 3D Perspective Stage */
+.full-doors-stage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  perspective: 1400px;
+  perspective-origin: 50% 50%;
+  z-index: 6;
+  overflow: hidden;
+}
+
+/* Individual Full-Screen Carved Wooden Door Leaves */
+.full-door-leaf {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: calc(50% + 2px);
+  will-change: transform, opacity;
+  transition: transform 2.6s cubic-bezier(0.2, 0.75, 0.25, 1), opacity 0.45s ease 2.2s;
+  overflow: hidden;
+  background-color: #2D1A0E;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Inner 200% width container ensures full-door image aligns seamlessly across both leaves */
+.full-door-inner {
+  position: absolute;
+  top: 0;
+  width: 200%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.full-door-leaf.leaf-left .full-door-inner {
+  left: 0;
+}
+
+.full-door-leaf.leaf-right .full-door-inner {
+  right: 0;
+}
+
+.full-leaf-img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center center;
+  pointer-events: none;
+  user-select: none;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.leaf-shadow-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.25) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 2.6s ease;
+  pointer-events: none;
+}
+
+/* Left Door Leaf (Hinged at left screen edge, rotates open) */
+.full-door-leaf.leaf-left {
+  left: 0;
+  transform-origin: left center;
+  transform: rotateY(0deg);
+  background-image: url('assets/full-wooden-door.jpg'), url('assets/door.jpg');
+  background-size: 200% 100%;
+  background-position: left center;
+  background-repeat: no-repeat;
+}
+
+/* Right Door Leaf (Hinged at right screen edge, rotates open) */
+.full-door-leaf.leaf-right {
+  right: 0;
+  transform-origin: right center;
+  transform: rotateY(0deg);
+  background-image: url('assets/full-wooden-door.jpg'), url('assets/door.jpg');
+  background-size: 200% 100%;
+  background-position: right center;
+  background-repeat: no-repeat;
+}
+
+/* Center Seam Dividing the Two Doors */
+.door-center-seam {
+  position: absolute;
+  top: 0;
+  left: calc(50% - 1.5px);
+  width: 3px;
+  height: 100%;
+  z-index: 8;
+  pointer-events: none;
+  background: linear-gradient(180deg, #1C0F08 0%, #3D2214 50%, #150B06 100%);
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.7);
+}
+
+.screen-entrance.is-opening .door-center-seam,
+.screen-entrance.is-opened .door-center-seam,
+.screen-entrance:not(.active) .door-center-seam {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  display: none !important;
+  transition: none !important;
+}
+
+/* Floating Tap Prompt Overlay */
+.grand-entrance-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 15;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  text-align: center;
+  padding: 1.5rem 1.25rem 4.5vh 1.25rem;
+  pointer-events: none;
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.grand-tap-prompt {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: rgba(30, 20, 14, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1.5px solid rgba(255, 249, 243, 0.55);
+  border-radius: 50px;
+  padding: 0.65rem 1.45rem;
+  box-shadow: 
+    0 10px 25px rgba(0, 0, 0, 0.6),
+    0 0 25px rgba(230, 197, 127, 0.3);
+  cursor: pointer;
+  pointer-events: auto;
+  transition: transform 0.25s ease, background-color 0.25s ease, border-color 0.25s ease;
+}
+
+.grand-tap-prompt:hover {
+  transform: translateY(-2px) scale(1.02);
+  background: rgba(45, 30, 22, 0.96);
+  border-color: rgba(255, 249, 243, 0.8);
+}
+
+.tap-icon-circle {
+  position: relative;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--color-terracotta);
+  color: var(--color-ivory);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tap-pulse-beacon {
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  border: 2px solid var(--color-terracotta);
+  animation: pulseBeacon 2s infinite;
+  pointer-events: none;
+}
+
+.grand-tap-text {
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: var(--color-ivory);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+/* ==========================================================================
+   ANIMATION: FULL-SCREEN DOUBLE DOORS SWINGING OPEN & LIGHT REVEAL
+   ========================================================================== */
+.screen-entrance.is-opening .grand-entrance-overlay {
+  opacity: 0;
+  transform: translateY(-20px) scale(0.96);
+  pointer-events: none;
+}
+
+.screen-entrance.is-opening .door-center-seam {
+  opacity: 0;
+}
+
+.screen-entrance.is-opening .full-door-leaf.leaf-left,
+.screen-entrance.is-opened .full-door-leaf.leaf-left {
+  transform: rotateY(-118deg);
+  opacity: 0;
+}
+
+.screen-entrance.is-opening .full-door-leaf.leaf-right,
+.screen-entrance.is-opened .full-door-leaf.leaf-right {
+  transform: rotateY(118deg);
+  opacity: 0;
+}
+
+.screen-entrance.is-opening .leaf-shadow-overlay {
+  opacity: 0.55;
+}
+
+@keyframes pulseBeacon {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.9;
+  }
+  70% {
+    transform: scale(1.7);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+}
+
+/* ==========================================================================
+   SCREEN 2: MAIN HOUSEWARMING INVITATION (Full-Screen Edge-to-Edge)
+   ========================================================================== */
+
+.screen-card {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  z-index: 5;
+  background:
+    radial-gradient(circle at 50% 12%, rgba(255, 255, 255, 0.9) 0%, rgba(255, 249, 243, 0.95) 45%, rgba(250, 242, 232, 0.98) 100%);
+}
+.screen-card::-webkit-scrollbar {
+  display: none;
+}
+
+/* Full-Screen Natural Flow Container */
+.invitation-container {
+  margin: auto;
+  width: 100%;
+  max-width: 580px;
+  /* Generous top padding to create large, comfortable empty space above header */
+  padding: clamp(4.5rem, 10vh, 7.5rem) 1.5rem 4rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1.25rem;
+}
+
+/* Bismillah Block (Shifted significantly further down) */
+.bismillah-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: clamp(1.5rem, 4vh, 3rem);
+  width: 100%;
+}
+
+.bismillah-arabic {
+  font-family: var(--font-arabic);
+  font-size: clamp(1.95rem, 5.8vw, 2.45rem);
+  line-height: 1.35;
+  color: var(--color-terracotta);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.bismillah-translation {
+  font-size: clamp(0.85rem, 2.6vw, 0.98rem);
+  color: var(--color-brown-muted);
+  font-style: italic;
+  letter-spacing: 0.03em;
+  opacity: 0.92;
+}
+
+/* Divider */
+.card-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+  gap: 0.75rem;
+  opacity: 0.65;
+}
+
+.divider-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-sage), transparent);
+}
+
+.divider-icon {
+  font-size: 0.75rem;
+  color: var(--color-sage);
+}
+
+/* Invitation Header */
+.invitation-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.eyebrow-text {
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: var(--color-sage);
+}
+
+.card-title {
+  font-family: var(--font-billabong);
+  font-size: clamp(2.75rem, 8.5vw, 4rem);
+  font-weight: 400;
+  color: var(--color-dark-brown);
+  line-height: 1.15;
+  letter-spacing: 0.02em;
+}
+
+/* Hosts Identification */
+.hosts-section,
+.hosts-house-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  width: 100%;
+}
+
+.inviting-phrase {
+  font-size: clamp(0.95rem, 2.8vw, 1.1rem);
+  color: var(--color-brown-muted);
+  font-style: italic;
+  font-family: var(--font-serif);
+  line-height: 1.35;
+}
+
+.family-name {
+  font-family: var(--font-serif);
+  font-size: clamp(2.15rem, 6.8vw, 2.85rem);
+  font-weight: 600;
+  color: var(--color-dark-brown);
+  letter-spacing: 0.025em;
+  line-height: 1.18;
+}
+
+.house-badge-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 0.2rem auto 0.5rem auto;
+}
+
+.house-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  padding: 0.1rem 0;
+}
+
+.house-name {
+  font-family: var(--font-dm-serif);
+  font-size: clamp(2.2rem, 6.8vw, 3rem);
+  font-weight: 400;
+  color: var(--color-terracotta-dark);
+  letter-spacing: 0.03em;
+  line-height: 1.15;
+}
+
+/* ==========================================================================
+   CLASSIC DATE & TIME SECTION (Reference Model with T-Junction Rule Borders)
+   ========================================================================== */
+
+.classic-date-model {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 440px;
+  margin: 1.1rem auto 0.9rem auto;
+  gap: clamp(0.6rem, 2.4vw, 0.9rem);
+  user-select: none;
+}
+
+/* Left & Right Side Columns (Framed by independent horizontal dotted lines) */
+.date-side-col {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top: 1.5px dotted rgba(165, 120, 90, 0.75);
+  border-bottom: 1.5px dotted rgba(165, 120, 90, 0.75);
+  padding: 0.42rem 0.6rem;
+}
+
+.date-side-col .side-text {
+  font-family: var(--font-serif);
+  font-size: clamp(0.78rem, 2.5vw, 0.95rem);
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-dark-brown);
+  white-space: nowrap;
+}
+
+/* Center Column (Month, Date Number, Year flanked by dotted vertical lines) */
+.date-center-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-left: 1.5px dotted rgba(165, 120, 90, 0.75);
+  border-right: 1.5px dotted rgba(165, 120, 90, 0.75);
+  padding: 0.45rem 1.15rem;
+  min-width: 96px;
+}
+
+.center-month {
+  font-family: var(--font-serif);
+  font-size: clamp(0.72rem, 2.2vw, 0.82rem);
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-dark-brown);
+  line-height: 1.2;
+}
+
+.center-number {
+  font-family: var(--font-serif);
+  font-size: clamp(2.3rem, 7.2vw, 3rem);
+  font-weight: 700;
+  color: var(--color-terracotta-dark);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  margin: 0.05rem 0;
+}
+
+.center-year {
+  font-family: var(--font-serif);
+  font-size: clamp(0.72rem, 2.2vw, 0.82rem);
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  color: var(--color-dark-brown);
+  line-height: 1.2;
+}
+
+/* Sophisticated Minimal Location / Venue Display */
+.ceremony-venue-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 440px;
+  margin-top: 0.25rem;
+  padding: 0.4rem 0.5rem;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.venue-address-container {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0.85rem;
+}
+
+.venue-icon-badge {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--color-sage-tint);
+  color: var(--color-sage);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 2px 6px rgba(135, 151, 122, 0.12);
+}
+
+.venue-address {
+  font-family: var(--font-serif);
+  font-style: normal;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  gap: 0.15rem;
+  font-size: clamp(1.05rem, 3.2vw, 1.22rem);
+  font-weight: 600;
+  color: var(--color-dark-brown);
+  line-height: 1.25;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.address-line {
+  display: block;
+  white-space: normal;
+}
+
+/* Blessing Note */
+.blessing-note {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.92rem;
+  line-height: 1.4;
+  color: var(--color-brown-muted);
+  padding: 0 0.5rem;
+}
+
+/* Card Action Buttons */
+.card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  width: 100%;
+  justify-content: center;
+}
+
+.btn-action {
+  flex: 1 1 calc(50% - 0.5rem);
+  min-width: 130px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  padding: 0.65rem 0.85rem;
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.btn-calendar {
+  background-color: var(--color-sage);
+  color: #FFFFFF;
+}
+
+.btn-calendar:hover {
+  background-color: #728266;
+  transform: translateY(-1px);
+}
+
+.btn-maps {
+  background-color: var(--color-terracotta);
+  color: #FFFFFF;
+}
+
+.btn-maps:hover {
+  background-color: var(--color-terracotta-dark);
+  transform: translateY(-1px);
+}
+
+.btn-copy {
+  flex: 1 1 100%;
+  background-color: transparent;
+  color: var(--color-dark-brown);
+  border: 1px solid rgba(45, 41, 37, 0.2);
+}
+
+.btn-copy:hover {
+  background-color: rgba(45, 41, 37, 0.04);
+}
+
+.btn-action:focus-visible {
+  outline: 2px solid var(--color-dark-brown);
+  outline-offset: 2px;
+}
+
+/* Replay entrance */
+.replay-entrance-box {
+  margin-top: 0.2rem;
+}
+
+.btn-replay {
+  background: none;
+  border: none;
+  font-family: var(--font-sans);
+  font-size: 0.76rem;
+  color: var(--color-brown-muted);
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  padding: 0.3rem 0.6rem;
+  transition: color 0.2s ease;
+}
+
+.btn-replay:hover {
+  color: var(--color-terracotta);
+}
+
+/* Toast Notification */
+.toast-notification {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(80px);
+  background: var(--color-dark-brown);
+  color: var(--color-ivory);
+  padding: 0.65rem 1.3rem;
+  border-radius: 50px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  z-index: 999;
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.3s var(--transition-smooth), opacity 0.3s ease;
+}
+
+.toast-notification.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+/* Keyframes */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulseDot {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(185, 111, 85, 0.7);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 7px rgba(185, 111, 85, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(185, 111, 85, 0);
+  }
+}
+
+/* ==========================================================================
+   STAGGERED ENTRANCE ANIMATIONS (Screen 2 Invitation Reveal)
+   Subtle, slow, and high-end digital invitation unfolding
+   ========================================================================== */
+
+@keyframes elegantRevealUp {
+  0% {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Before doors open, items wait gracefully in prepared state */
+.screen-card:not(.is-revealed) .stagger-item {
+  opacity: 0;
+  transform: translateY(28px);
+  will-change: transform, opacity;
+}
+
+/* Sequential slow, graceful entrance cascade (1.65s gentle glide) */
+.screen-card.is-revealed .stagger-item {
+  animation: elegantRevealUp 1.65s cubic-bezier(0.12, 1, 0.25, 1) both;
+  will-change: transform, opacity;
+}
+
+.screen-card.is-revealed .stagger-1 { animation-delay: 0.55s; }
+.screen-card.is-revealed .stagger-2 { animation-delay: 0.95s; }
+.screen-card.is-revealed .stagger-3 { animation-delay: 1.40s; }
+.screen-card.is-revealed .stagger-4 { animation-delay: 1.90s; }
+.screen-card.is-revealed .stagger-5 { animation-delay: 2.40s; }
+.screen-card.is-revealed .stagger-6 { animation-delay: 2.90s; }
+.screen-card.is-revealed .stagger-7 { animation-delay: 3.40s; }
+.screen-card.is-revealed .stagger-8 { animation-delay: 3.90s; }
+.screen-card.is-revealed .stagger-9 { animation-delay: 4.40s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .screen-card:not(.is-revealed) .stagger-item,
+  .screen-card.is-revealed .stagger-item {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+}
+
+/* ==========================================================================
+   FLOATING BACKGROUND MUSIC CONTROL
+   Subtle floating button with glassmorphism & mute/unmute state
+   ========================================================================== */
+.btn-music-toggle {
+  position: fixed;
+  top: clamp(1rem, 3vh, 1.5rem);
+  right: clamp(1rem, 3vw, 1.5rem);
+  z-index: 90;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(135, 151, 122, 0.35);
+  color: var(--color-dark-brown);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(45, 41, 37, 0.1);
+  transition: all 0.25s ease;
+  outline: none;
+}
+
+.btn-music-toggle:hover {
+  transform: scale(1.08);
+  background: rgba(255, 255, 255, 0.98);
+  border-color: var(--color-sage);
+  box-shadow: 0 6px 20px rgba(45, 41, 37, 0.16);
+}
+
+.btn-music-toggle:focus-visible {
+  outline: 2px solid var(--color-dark-brown);
+  outline-offset: 2px;
+}
+
+.btn-music-toggle .icon-music-playing {
+  display: none;
+}
+
+.btn-music-toggle .icon-music-muted {
+  display: block;
+}
+
+.btn-music-toggle.is-playing {
+  color: var(--color-terracotta);
+  border-color: rgba(185, 111, 85, 0.45);
+  box-shadow: 0 4px 18px rgba(185, 111, 85, 0.25);
+}
+
+.btn-music-toggle.is-playing .icon-music-playing {
+  display: block;
+  animation: musicIconPulse 2s ease-in-out infinite;
+}
+
+.btn-music-toggle.is-playing .icon-music-muted {
+  display: none;
+}
+
+@keyframes musicIconPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.12);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .invitation-container {
+    padding: clamp(3.5rem, 8vh, 5rem) 1.15rem 3rem 1.15rem;
+    gap: 1.15rem;
+  }
+  .bismillah-block {
+    margin-top: clamp(1rem, 3vh, 2rem);
+  }
+  .event-details-grid {
+    padding: 1rem 1.1rem;
+  }
+  .grand-tap-prompt {
+    padding: 0.55rem 1.2rem;
+  }
+  .grand-tap-text {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .btn-action {
+    flex: 1 1 100%;
+  }
+}
